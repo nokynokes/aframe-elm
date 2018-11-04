@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (..)
+import Color exposing (red)
 import AFrame exposing (..)
 import AFrame.Primitives exposing (..)
 import AFrame.Primitives.Attributes exposing (..)
@@ -34,7 +35,20 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    scene [] []
+    scene []
+          [
+               box
+                [ color red
+                , depth 2
+                , height 4.0
+                , width 2.0
+                , scale 1.0 1.0 1.0
+                , position 0 0 -5
+                ] []
+
+
+          ]
+
 
 
 main : Program Never Model Msg
