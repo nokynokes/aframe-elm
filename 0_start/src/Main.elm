@@ -2,6 +2,8 @@ module Main exposing (..)
 
 import Html exposing (..)
 import AFrame exposing (..)
+import AFrame.Primitives exposing (..)
+import AFrame.Primitives.Attributes exposing (..)
 
 
 type alias Model =
