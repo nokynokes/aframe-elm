@@ -3,7 +3,7 @@ module Main exposing (..)
 import Html exposing (..)
 import Color exposing (red)
 import AFrame exposing (..)
-import AFrame.Primitives exposing (..)
+import AFrame.Primitives exposing (circle)
 import AFrame.Primitives.Attributes exposing (..)
 
 
@@ -36,18 +36,17 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     scene []
-          [
-               box
-                [ color red
-                , depth 2
-                , height 4.0
-                , width 2.0
-                , scale 1.0 1.0 1.0
-                , position 0 0 -5
-                ] []
-
-
+          [ circle
+              [ shader "grid-glitch"
+              , depth 2
+              --, height 4.0
+              --, width 2.0
+              , scale 1.0 1.0 1.0
+              , position 0 0 -3
+              , radius 5.0
+              ] []
           ]
+
 
 
 
