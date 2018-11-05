@@ -1,31 +1,36 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Color exposing (red)
+import Html.Lazy exposing (lazy)
+import Html.Events exposing (onClick)
+import Color exposing (..)
 import AFrame exposing (..)
-import AFrame.Primitives exposing (circle)
+import AFrame.Primitives exposing (sphere, box, sky)
 import AFrame.Primitives.Attributes exposing (..)
+import AFrame.Primitives.Cursor exposing (..)
+import AFrame.Primitives.Camera exposing (..)
+import AFrame.Animations exposing (..)
 
 
 type alias Model =
-    Int
+    Bool
 
 
 type Msg
-    = NoOp
+    = Clicked
 
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( 1, Cmd.none )
+    (True, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
-            model ! []
+        Clicked ->
+          (not model) ! []
 
 
 subscriptions : Model -> Sub Msg
@@ -34,18 +39,16 @@ subscriptions model =
 
 
 view : Model -> Html Msg
-view model =
+view m =
     scene []
-          [ circle
-              [ shader "grid-glitch"
-              , depth 2
-              --, height 4.0
-              --, width 2.0
-              , scale 1.0 1.0 1.0
-              , position 0 0 -3
-              , radius 5.0
-              ] []
-          ]
+      [ camera [ ] [ cursor [color black] [] ]
+      , sky [ shader "balliedscope"] []
+      ]
+
+
+
+
+
 
 
 
